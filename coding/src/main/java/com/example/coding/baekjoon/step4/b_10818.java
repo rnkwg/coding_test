@@ -8,12 +8,7 @@ public class b_10818 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-
-//        String str1 = br.readLine();
-//        StringTokenizer st1 = new StringTokenizer(str1);
-
         int n = Integer.parseInt(br.readLine());
-//        int x = Integer.parseInt(st1.nextToken());
 
         int num[] = new int[n];
 
@@ -23,7 +18,6 @@ public class b_10818 {
             num[i] = Integer.parseInt(st2.nextToken());
         }
 
-//        String result = "";
         int max = num[0];
         int min = num[0];
         for(int i = 0; i < n; i++) {
