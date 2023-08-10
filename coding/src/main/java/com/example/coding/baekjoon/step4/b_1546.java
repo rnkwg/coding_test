@@ -9,14 +9,14 @@ public class b_1546 {
         BufferedWriter bw = new BufferedWriter (new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(String.valueOf(br.readLine()));
-        int max = 0;
-        int arr[] = new int[n];
+        Double max = 0.0;
+        Double arr[] = new Double[n];
 
         String str2 = br.readLine();
         StringTokenizer st2 = new StringTokenizer(str2);
 
         for(int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st2.nextToken());
+            arr[i] = Double.parseDouble(st2.nextToken());
             if(max < arr[i]) {
                 max = arr[i];
             }
@@ -27,17 +27,6 @@ public class b_1546 {
             sum += arr[i] / max * 100;
         }
         bw.write((sum / n) + "\n");
-
-//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-//        Long A = Long.parseLong(st.nextToken());
-//        Long B = Long.parseLong(st.nextToken());
-//
-//        if(A > B)
-//            bw.write(">\n");
-//        else if(A < B)
-//            bw.write("<\n");
-//        else
-//            bw.write("==\n");
 
         bw.flush();
         bw.close();
