@@ -35,8 +35,8 @@ public class b_2563 {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            for(int j = a; j < a + 11; j++) {
-                for(int k = b; k < b + 11; k++)
+            for(int j = a; j < a + 10; j++) {
+                for(int k = b; k < b + 10; k++)
                     graph[j][k] += 1;
             }
         }
