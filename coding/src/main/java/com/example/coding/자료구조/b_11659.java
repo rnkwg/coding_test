@@ -7,22 +7,7 @@ public class b_11659 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter (new OutputStreamWriter(System.out));
-        /**
-         * 입력
-         * 5 3
-         * 5 4 3 2 1 : array
-         * 5 9 12 14 15 : sum
-         * 5 9 7 5 3
-         *
-         * 1 3 : 12
-         * 2 4 : 9
-         * 5 5 : 1
-         *
-         * 출력
-         * 12
-         * 9 = sum[3] - array[0]
-         * 1 = sum[4] - array[4]
-         */
+
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
@@ -46,7 +31,7 @@ public class b_11659 {
             int end = Integer.parseInt(st.nextToken());
 
             if(start > 1)
-                answer[i] = sum[end - 1] - sum[start - 1];
+                answer[i] = sum[end - 1] - sum[start - 2];
             else
                 answer[i] = sum[end - 1];
         }
