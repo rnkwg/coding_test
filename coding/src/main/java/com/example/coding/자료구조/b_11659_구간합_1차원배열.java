@@ -3,7 +3,7 @@ package com.example.coding.자료구조;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class b_11659 {
+public class b_11659_구간합_1차원배열 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter (new OutputStreamWriter(System.out));
