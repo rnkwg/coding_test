@@ -14,7 +14,7 @@ public class b_10980_구간합_나누어떨어지기 {
 
         int[] array = new int[n];
         int[] sum = new int[n];
-        int[] answer = new int[m];
+        int count = 0;
 
         st = new StringTokenizer(br.readLine(), " ");
         for(int i = 0; i < n; i++) {
@@ -25,20 +25,42 @@ public class b_10980_구간합_나누어떨어지기 {
             sum[i] = sum[i - 1] + array[i];
         }
 
-        for(int i = 0; i < m; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
+        /**
+         * 입력
+         * 5 3
+         * 1 2 3 1 2
+         *
+         * 1 3 6 7 9
+         *
+         * 출력
+         * 7
+         */
 
-            if(start > 1)
-                answer[i] = sum[end - 1] - sum[start - 2];
-            else
-                answer[i] = sum[end - 1];
+        for(int i = 0; i < m; i++) {
+            for(int j = i; j < m; j++) {
+//                if (i > 0) {
+//                    if (sum[j] - sum[i - 1] % n == 0)
+//                        count++;
+//                } else {
+//                    if(sum[j - 1] % m == 0)
+//                        count++;
+//                }
+                if(i == j) {
+                    if(array[i] % m == 0)
+                        count++;
+                } else if(i > 0) {
+                    if(sum[j] - sum[i - 1] % n == 0)
+                        count++;
+                } else {
+                    if(sum[j] % n == 0)
+                        count++;
+                }
+            }
         }
 
-        for(int i = 0; i < m; i++) {
-            bw.write(answer[i] + "\n");
-        }
+//        for(int i = 0; i < m; i++) {
+            bw.write(count + "\n");
+//        }
 
         bw.flush();
         bw.close();
