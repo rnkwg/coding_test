@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class b_11268 {
+public class b_11286_우선순위큐 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -28,12 +28,16 @@ public class b_11268 {
             if(m == 0) {
                 // 큐가 비었다면 add
                 if(queue.isEmpty()) {
-                    queue.add(m);
+                     sb.append(0 + "\n");
+                } else {
+                    sb.append(queue.poll() + "\n");
                 }
+            } else {
+                queue.add(m);
             }
         }
 
-        bw.write(queue.peek() + "\n");
+        bw.write(sb + "\n");
         bw.flush();
         bw.close();
         br.close();
