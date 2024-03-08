@@ -1,12 +1,9 @@
-package com.example.coding.자료구조;
+package com.example.coding.탐색;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class b_2023 {
-    static int count = 1;
     static int n;
     static ArrayList<Integer> result;
 
@@ -17,14 +14,15 @@ public class b_2023 {
         n = Integer.parseInt(br.readLine());
         result = new ArrayList<Integer>();
 
-        for(int i = 2; i <= 9; i++) {
-            if(isPrime(i)) {
-                dfs(i);
-            }
-        }
+        // 제일 마지막 자리의 경우 소수가 되는 경우는 : 2, 3, 5, 7
+        // 자릿수를 같이 param 으로 보낸다
+        dfs(2, 1);
+        dfs(3, 1);
+        dfs(5, 1);
+        dfs(7, 1);
 
         for(int i = 0; i < result.size(); i++) {
-            bw.write("result " + i + result.get(i) + "\n");
+            bw.write(result.get(i) + "\n");
         }
         
         bw.flush();
@@ -39,22 +37,25 @@ public class b_2023 {
         return true;
     }
 
-    static void dfs(int v) {
-        if(!isPrime(v)) {
+    static void dfs(int v, int jarisu) {
+        // 자릿수 = n && 소수라면 결과 배열에 add
+        // 자릿수 = n && !소수라면 return
+        if(jarisu == n) {
+            if(isPrime(v)) {
+                result.add(v);
+            }
             return;
-        } else if(count == n) {
-            System.out.println("!!" + v);
-            result.add(v);
         }
 
-        count++;
-        if(count <= n) {
-            for(int i = 1; i <= 9; i++) {
-                int m = v * 10 + i;
-                System.out.println(m);
-                if(isPrime(m))
-                    dfs(m);
+        for(int i = 1; i <= 9; i++) {
+            // 마지막 자리 짝수의 경우는 소수가 아님
+            if(i % 2 == 0) continue;
+
+            // 자리 늘려가기
+            if(isPrime(v * 10 + i)) {
+                dfs(v * 10 + i, jarisu + 1);
             }
         }
+
     }
 }
