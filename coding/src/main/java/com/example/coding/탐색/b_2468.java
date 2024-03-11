@@ -55,7 +55,7 @@ public class b_2468 {
             refreshVisited();
         }
 
-        int max = areaCount.get(0);
+        int max = 1;
         for(int i = 0; i < areaCount.size(); i++) {
             if(max < areaCount.get(i))
                 max = areaCount.get(i);
