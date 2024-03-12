@@ -1,4 +1,4 @@
-package com.example.coding.탐색;
+package com.example.coding.탐색.dfs;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class b_2468 {
             if(height[i] == 0) continue;
             for(int j = 0; j < n; j++) {
                 for(int k = 0; k < n; k++) {
-                    //방문하지 않았고 그래프가
+                    //방문하지 않았고 그래프가 i 보다 커야 한다
                     if (!visited[j][k] && graph[j][k] > i) {
                         area++;
                         dfs(j, k, i);
@@ -52,6 +52,8 @@ public class b_2468 {
 
             areaCount.add(area);
             area = 0;
+
+            // i에 따라서 다시 dfs 수행하기 때문에 방문 배열 초기화 해준다
             refreshVisited();
         }
 

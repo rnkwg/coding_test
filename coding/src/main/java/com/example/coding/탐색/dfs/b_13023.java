@@ -1,4 +1,4 @@
-package com.example.coding.탐색;
+package com.example.coding.탐색.dfs;
 
 import java.io.*;
 import java.util.ArrayList;
