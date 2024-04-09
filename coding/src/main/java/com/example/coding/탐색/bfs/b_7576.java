@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class b_7576 {
     static boolean visited[][];
     static Integer[][] graph;
-    static Integer[][] distance;
+    static Integer[][] time;
     static StringBuilder stringBuilder = new StringBuilder();
     static int count = 0;
 
@@ -28,32 +28,83 @@ public class b_7576 {
         n = Integer.parseInt(st.nextToken());
         graph = new Integer[n][m];
         visited = new boolean[n][m];
-//        distance = new Integer[n][m];
+        time = new Integer[n][m];
 
         // 그래프 입력 받는다
         for(int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 0; j < m; j++) {
                 graph[i][j] = Integer.parseInt(st.nextToken());
-//                distance[i][j] = 0; //거리 그래프 초기화
+                time[i][j] = 0; //시간 그래프 초기화
             }
         }
 
-        bfs(0, 0);
+        // 저장할 때부터 모든 토마토가 익었는지 판별
+        boolean allClearSetting = true;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(graph[i][j] == 0) {
+                    allClearSetting = false;
+                    break;
+                }
+            }
+        }
 
-        bw.write((distance[n - 1][m - 1] + 1 )+ "\n");
+        if(allClearSetting == true) {
+            bw.write("0\n");
+        } else {
+            // bfs 실행
+            bfs();
+
+            // 토마토가 모두 익지 못하는 상황인지 확인
+            boolean allClear = true;
+            for(int i = 0; i < n; i++) {
+                for(int j = 0; j < m; j++) {
+                    if(graph[i][j] == 0) {
+                        bw.write("-1\n");
+                        allClear = false;
+                        break;
+                    }
+                }
+                if(allClear == false) {
+                    break;
+                }
+            }
+
+            if(allClear == true) {
+                int max = time[0][0];
+                for(int i = 0; i < n; i++) {
+                    for(int j = 0; j < m; j++) {
+                        if(time[i][j] > max) {
+                            max = time[i][j];
+                        }
+                    }
+                }
+                bw.write(max + "\n");
+            }
+        }
+
         bw.flush();
         bw.close();
         br.close();
     }
 
-    static void bfs(int i, int j) {
+    static void bfs() {
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[] {i, j});
 
-        visited[i][j] = true;
+        // graph 값이 1인 경우가 여러개가 있을 수 있기 때문
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(graph[i][j] == 1) {
+                    queue.offer(new int[] {i, j});
+                    visited[i][j] = true;
+                }
+            }
+        }
 
         while(!queue.isEmpty()) {
+            count += 1;
+
             int v[] = queue.poll();
             int vx = v[0];
             int vy = v[1];
@@ -63,11 +114,12 @@ public class b_7576 {
                 int nx = vx + dx[k];
                 int ny = vy + dy[k];
 
-                if(nx < n && ny < m && nx >= 0 && ny >= 0 && !visited[nx][ny] && graph[nx][ny] == 1) {
+                if(nx < n && ny < m && nx >= 0 && ny >= 0 && !visited[nx][ny] && graph[nx][ny] == 0) {
                     visited[nx][ny] = true;
+                    graph[nx][ny] = 1;
                     queue.add(new int[] {nx, ny});
-                    // 거리 그래프 처리 : 전진 좌표는 이전 좌표에서 거리가 하나씩 증가한 것이므로 이전 좌표의 거리 + 1
-                    distance[nx][ny] = distance[vx][vy] + 1;
+                    // 시간 그래프 처리 : 전진 좌표는 이전 좌표에서 시간이 하나씩 증가한 것이므로 이전 좌표의 시간 + 1
+                    time[nx][ny] = time[vx][vy] + 1;
                 }
             }
         }
