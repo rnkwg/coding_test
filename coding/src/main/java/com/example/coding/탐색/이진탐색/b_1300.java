@@ -11,42 +11,26 @@ public class b_1300 {
 
         int n = Integer.parseInt(br.readLine());
         int k = Integer.parseInt(br.readLine());
+        long start = 1;
+        long end = k;
+        long answer = 0;
 
-        int graph[][] = new int[n][n];
-        int array[] = new int[n * n];
-
-//        for(int i = 0; i < n; i++) {
-//            for(int j = 0; j < n; j++)
-//                graph[i][j] = (i + 1) * (j + 1);
-//        }
-//
-//        for(int i = 0; i < n; i++) {
-//            for(int j = 0; j < n; j++)
-//                array[i * n + j] = graph[i][j];
-//        }
-//        Arrays.sort(array);
-
-        int target = k;
-        int start = 0;
-        int end = n * n - 1;
-        boolean find = false;
-        int mid = 0;
-
-            while(start <= end) {
-                mid = (start + end) / 2;
-                if(array[mid] > target) {
-                    end = mid - 1;
-                } else if(array[mid] < target) {
-                    start = mid + 1;
-                } else {
-                    find = true;
-                }
-                if(find == true) {
-                    break;
-                }
+        while (start <= end) {
+            long middle = (start + end) / 2;
+            long cnt = 0;
+            // 중간 값보다 작은 수는 몇 개인지 계산.
+            for (int i = 1; i <= n; i++) {
+                cnt += Math.min(middle / i, n);  // 작은 수를 카운트하는 핵심로직
             }
+            if (cnt < k) {
+                start = middle + 1;
+            } else {
+                answer = middle;  // 현재 단계의 중간 값을 정답 변수에 저장
+                end = middle - 1;
+            }
+        }
 
-        bw.write(array[k - 1] + "\n");
+        bw.write(answer + "\n");
         bw.flush();
         bw.close();
         br.close();
