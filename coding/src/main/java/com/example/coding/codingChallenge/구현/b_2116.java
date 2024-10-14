@@ -1,4 +1,4 @@
-package com.example.coding.codingChallenge.시물레이션;
+package com.example.coding.codingChallenge.구현;
 
 import java.io.*;
 import java.util.*;

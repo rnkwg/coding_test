@@ -1,8 +1,6 @@
-package com.example.coding.codingChallenge.시물레이션;
+package com.example.coding.codingChallenge.구현;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class b_2659 {
