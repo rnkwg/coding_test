@@ -17,7 +17,6 @@ public class b_2615 {
             }
         }
 
-
         // 모든 칸에 대해 오목 완성 찾기
         for (int j = 0; j < 19; j++) {
             for (int i = 0; i < 19; i++) {
@@ -66,7 +65,5 @@ public class b_2615 {
 
 //		아무도 이기지 않았을 경우
         System.out.println(0);
-
-
     }
 }
