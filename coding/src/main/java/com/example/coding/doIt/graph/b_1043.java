@@ -91,6 +91,7 @@ public class b_1043 {
             int ni = graph[num].get(i);
 
             if(!visited[ni]) {
+                // 진실을 알게 된 사람 모음에 해당 사람도 넣어준다
                 truth.add(ni);
                 dfs(graph, visited, ni);
             }
