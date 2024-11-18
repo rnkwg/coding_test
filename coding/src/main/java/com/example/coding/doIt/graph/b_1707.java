@@ -68,7 +68,6 @@ public class b_1707 {
         // 방문처리
         visited[num] = true;
 
-        // 인접한 8방향 반복
         for(int i = 0; i < graph[num].size(); i++) {
             int ni = graph[num].get(i);
 
